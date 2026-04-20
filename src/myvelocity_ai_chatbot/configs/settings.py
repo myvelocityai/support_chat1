@@ -1,0 +1,6 @@
+import os
+
+WEAVIATE_URL = os.environ["WEAVIATE_URL"]
+WEAVIATE_API_KEY = os.environ["WEAVIATE_API_KEY"]
+ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
+WEAVIATE_INDEX = os.getenv("WEAVIATE_INDEX", "Documents")
