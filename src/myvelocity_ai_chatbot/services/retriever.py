@@ -1,13 +1,12 @@
 from  myvelocity_ai_chatbot.configs.settings import WEAVIATE_INDEX
 from langchain_weaviate import WeaviateVectorStore
-from myvelocity_ai_chatbot.llm_config.embeddings import get_embeddings
 
-def build_retriever(client):
+def build_retriever(client, embeddings):
     vectorstore = WeaviateVectorStore(
         client=client,
         index_name=WEAVIATE_INDEX,
         text_key="content",
-        embedding=get_embeddings()
+        embedding=embeddings,
     )
 
     result = client.collections.get(WEAVIATE_INDEX).query.fetch_objects(limit=200)
@@ -23,5 +22,5 @@ def build_retriever(client):
 
     return vectorstore.as_retriever(
         search_type="similarity",
-        search_kwargs={"k": 10}
+        search_kwargs={"k": 4}
     )
