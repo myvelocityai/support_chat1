@@ -17,7 +17,7 @@ def get_client():
             cluster_url=WEAVIATE_URL,
             auth_credentials=Auth.api_key(WEAVIATE_API_KEY),
             additional_config=wvc.init.AdditionalConfig(
-                timeout=wvc.init.Timeout(init=30)
+                timeout=wvc.init.Timeout(init=30, query=60, insert=60)
             ),
             skip_init_checks=True
         )
