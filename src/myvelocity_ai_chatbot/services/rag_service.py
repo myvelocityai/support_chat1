@@ -10,11 +10,7 @@ async def ask_question(query: str, retriever, client, embeddings):
         return {"answer": cached, "sources": [], "cached": True}
 
     docs = retriever.invoke(query)
-
-    if not docs:
-        return {"answer": FALLBACK, "sources": [], "cached": False}
-
-    context = "\n\n".join([doc.page_content for doc in docs])
+    context = "\n\n".join([doc.page_content for doc in docs]) if docs else ""
 
     answer = await call_claude(context, query)
 
