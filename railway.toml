@@ -1,0 +1,7 @@
+[build]
+builder = "nixpacks"
+buildCommand = "poetry install --no-interaction --no-ansi --only main"
+
+[deploy]
+startCommand = "PYTHONPATH=/app/src uvicorn myvelocity_ai_chatbot.main:app --host 0.0.0.0 --port ${PORT:-8000}"
+restartPolicyType = "on_failure"
