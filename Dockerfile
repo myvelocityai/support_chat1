@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir poetry==2.3.4 && \
 
 ENV PYTHONPATH=/app/src
 
-CMD uvicorn myvelocity_ai_chatbot.main:app --host 0.0.0.0 --port ${PORT:-8000}
+CMD ["/bin/sh", "-c", "uvicorn myvelocity_ai_chatbot.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
